@@ -5,7 +5,7 @@ $root = Split-Path $PSScriptRoot -Parent
 $types = @{
   ".html" = "text/html"; ".css" = "text/css"; ".js" = "text/javascript"; ".json" = "application/json"
   ".jpg" = "image/jpeg"; ".jpeg" = "image/jpeg"; ".png" = "image/png"; ".gif" = "image/gif"
-  ".webp" = "image/webp"; ".svg" = "image/svg+xml"; ".mp4" = "video/mp4"; ".webm" = "video/webm"; ".mov" = "video/quicktime"
+  ".webp" = "image/webp"; ".svg" = "image/svg+xml"; ".mp4" = "video/mp4"; ".webm" = "video/webm"; ".mov" = "video/quicktime"; ".pdf" = "application/pdf"
 }
 
 $listener = New-Object System.Net.HttpListener
