@@ -113,7 +113,7 @@ function render() {
 
 function openLightbox(item) {
   lightboxMedia.replaceChildren(media(item, { controls: true }));
-  lightboxCaption.textContent = item.meta ? `${item.title} — ${item.meta}` : item.title;
+  lightboxCaption.textContent = item.meta ? `${item.title} · ${item.meta}` : item.title;
   // Phones often can't show a PDF inside the page, so offer it full screen too
   if (kind(item.src) === "pdf") {
     lightboxCaption.insertAdjacentHTML("beforeend", ` · <a href="${item.url}" target="_blank" rel="noopener">Open PDF ↗</a>`);
