@@ -11,7 +11,7 @@
   <meta name="robots" content="noai, noimageai">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,9 +23,26 @@
 
   <main>
     <section class="hero">
-      <p class="eyebrow">Selected work · 2026</p>
-      <h1>Small worlds,<br><em>made by hand.</em></h1>
-      <p class="lede">2D animation, 3D, motion graphics, character design, and storyboards — built frame by frame.</p>
+      <div>
+        <h1>My Portfolio<br><em>Work</em></h1>
+        <p class="lede">Browse my 2D and 3D works, motion graphics, character designs, and more!</p>
+        <!-- Buttons for each section are added from gallery.js -->
+        <div id="chips" class="links"></div>
+      </div>
+      <div class="hero-art">
+        <a class="hero-tile big" href="#2d-animation">
+          <video src="2D_Animation/Myers_Brianna_EnvironmentParallax%20(2).mp4" autoplay muted loop playsinline></video>
+          <span class="badge">2D Animation</span>
+        </a>
+        <a class="hero-tile" href="#character-design">
+          <img src="Character_Design/myersB_LeadChar_MasterPose.jpg" alt="Lead character master pose">
+          <span class="badge">Character Design</span>
+        </a>
+        <a class="hero-tile" href="#3d">
+          <video src="3D/myers-brianna-final-movie.mp4" autoplay muted loop playsinline></video>
+          <span class="badge">3D</span>
+        </a>
+      </div>
     </section>
 
     <div id="sections"></div>
@@ -35,7 +52,15 @@
       <div>
         <h2>About</h2>
         <p class="about-name">Brianna Myers</p>
-        <p class="about-bio">Animator and character designer working in 2D, 3D, and motion graphics. A short note about your process goes here — what you make, what you make it with, and why.</p>
+        <p class="about-bio">Hello! Welcome to my portfolio!</p>
+        <div class="about-text">
+          <p>My name is Brianna, and I'm an artist currently studying Animation Production with a minor in Marketing at Ball State University. I enjoy working across both 2D and 3D animation, with a particular interest in character design and storyboarding. I'm drawn to experimentation, and exploring different ways to bring ideas to life through both digital and traditional mediums.</p>
+          <p>Ultimately, I hope to build a career in animation and create things that stick with people. I'm especially interested in bringing memorable characters and imaginative worlds to life, and hopefully making something that someone else grows up loving as much as I loved the things that inspired me.</p>
+          <p>Please enjoy your stay!</p>
+        </div>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/brianna-myers-99a864327" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="https://briermyers.artstation.com/" target="_blank" rel="noopener">ArtStation ↗</a>        </div>
       </div>
     </section>
   </main>

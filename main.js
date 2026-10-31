@@ -1,4 +1,5 @@
 const nav = document.getElementById("nav");
+const chips = document.getElementById("chips");
 const sectionsEl = document.getElementById("sections");
 const lightbox = document.getElementById("lightbox");
 const lightboxMedia = lightbox.querySelector(".lightbox-media");
@@ -87,6 +88,7 @@ function tile(item, i) {
 function render() {
   SECTIONS.forEach((section) => {
     nav.insertAdjacentHTML("beforeend", `<a href="#${section.id}">${section.title}</a>`);
+    chips.insertAdjacentHTML("beforeend", `<a href="#${section.id}">${section.title}</a>`);
 
     const el = document.createElement("section");
     el.id = section.id;
