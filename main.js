@@ -104,6 +104,7 @@ function render() {
     section.items.forEach((item, i) => {
       // Folder names and files can have spaces, so encode the path for the browser
       item.url = encodeURI(`${section.folder}/${item.src}`);
+      item.section = section.title;
       gallery.appendChild(tile(item, i, section.items));
     });
     sectionsEl.appendChild(el);
@@ -125,6 +126,18 @@ function openLightbox(items, index) {
     lightboxCaption.insertAdjacentHTML("beforeend", ` · <a href="${item.url}" target="_blank" rel="noopener">Open PDF ↗</a>`);
   }
   if (!lightbox.open) lightbox.showModal();
+  countView(item);
+}
+
+// Tell GoatCounter which piece was opened, so the dashboard lists views per piece.
+// The counter script loads async and may be blocked, so skip quietly if it's missing.
+function countView(item) {
+  if (!window.goatcounter || !window.goatcounter.count) return;
+  window.goatcounter.count({
+    path: `${item.section}: ${item.title}`,
+    title: `${item.title} (${item.section})`,
+    event: true,
+  });
 }
 
 // Step to the next or previous piece, wrapping around at either end
