@@ -53,7 +53,7 @@ function media(item, { controls = false } = {}) {
   return img;
 }
 
-function tile(item, i) {
+function tile(item, i, items) {
   const el = document.createElement("figure");
   el.className = `tile ${item.fit === "contain" ? "contain" : ""}`;
   el.style.animationDelay = `${Math.min(i, 8) * 60}ms`;
@@ -79,7 +79,7 @@ function tile(item, i) {
     el.addEventListener("mouseleave", () => { video.pause(); video.currentTime = item.thumb || 0; });
   }
 
-  const open = () => openLightbox(item);
+  const open = () => openLightbox(items, i);
   el.addEventListener("click", open);
   el.addEventListener("keydown", (e) => { if (e.key === "Enter") open(); });
   return el;
@@ -104,22 +104,42 @@ function render() {
     section.items.forEach((item, i) => {
       // Folder names and files can have spaces, so encode the path for the browser
       item.url = encodeURI(`${section.folder}/${item.src}`);
-      gallery.appendChild(tile(item, i));
+      gallery.appendChild(tile(item, i, section.items));
     });
     sectionsEl.appendChild(el);
   });
   nav.insertAdjacentHTML("beforeend", `<a href="#about">About</a>`);
 }
 
-function openLightbox(item) {
+// The section being browsed in the lightbox, so the arrows can step through it
+let current = { items: [], index: 0 };
+
+function openLightbox(items, index) {
+  current = { items, index };
+  const item = items[index];
+  lightbox.classList.toggle("single", items.length < 2);
   lightboxMedia.replaceChildren(media(item, { controls: true }));
   lightboxCaption.textContent = item.meta ? `${item.title} · ${item.meta}` : item.title;
   // Phones often can't show a PDF inside the page, so offer it full screen too
   if (kind(item.src) === "pdf") {
     lightboxCaption.insertAdjacentHTML("beforeend", ` · <a href="${item.url}" target="_blank" rel="noopener">Open PDF ↗</a>`);
   }
-  lightbox.showModal();
+  if (!lightbox.open) lightbox.showModal();
 }
+
+// Step to the next or previous piece, wrapping around at either end
+function step(by) {
+  const { items, index } = current;
+  if (items.length < 2) return;
+  openLightbox(items, (index + by + items.length) % items.length);
+}
+
+lightbox.querySelector(".lightbox-arrow.prev").addEventListener("click", () => step(-1));
+lightbox.querySelector(".lightbox-arrow.next").addEventListener("click", () => step(1));
+lightbox.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") step(-1);
+  if (e.key === "ArrowRight") step(1);
+});
 
 lightbox.addEventListener("close", () => lightboxMedia.replaceChildren());
 lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
