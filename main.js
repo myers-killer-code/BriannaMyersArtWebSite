@@ -35,8 +35,10 @@ function media(item, { controls = false } = {}) {
   }
   if (type === "video") {
     const v = document.createElement("video");
-    // Tiles open on the thumb frame; the lightbox plays from the start
-    v.src = item.thumb && !controls ? `${item.url}#t=${item.thumb}` : item.url;
+    // Tiles open on the thumb frame; the lightbox plays from the start.
+    // iPhone/iPad Safari only paints a preview frame when a #t= time is given,
+    // so tiles without a thumb still get a tiny one.
+    v.src = controls ? item.url : `${item.url}#t=${item.thumb || 0.1}`;
     if (item.poster) v.poster = item.poster;
     v.muted = !controls;
     v.loop = true;
