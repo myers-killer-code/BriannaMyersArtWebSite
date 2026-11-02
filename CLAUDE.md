@@ -10,6 +10,8 @@ Personal and machine-specific notes go in `CLAUDE.local.md` (gitignored). Keep t
 - `gallery.js`: **all portfolio content**. `SECTIONS` array: one entry per menu item (`id`, `title`, `folder`, `items`).
   Item fields: `title`, `src` (file name inside the folder), optional `meta` (small note on the right), `fit: "contain"` (no cropping, for tall or very wide images), `thumb` (seconds into a video to use as its preview frame).
 - `main.js`: renders sections, tiles and the lightbox. File type comes from the extension: video (mp4/mov/webm), pdf (opens in an iframe with an "Open PDF" link), otherwise image.
+  The lightbox has ‹ › arrows (and arrow keys) that cycle through the pieces in the same section, wrapping at the ends.
+- Analytics: GoatCounter (`briannamyersart.goatcounter.com`, no cookies). The script tag is at the bottom of `index.html`. `countView()` in `main.js` sends an event per piece opened, named `Section: Title`, so keep item titles unique within a section. New `gallery.js` items are counted automatically.
 - `styles.css`: color tokens live on `:root`. The site is **always dark** (deep purple `#17121f`, lilac `#b49cff` → seafoam `#7fd8cb` gradient accent). There is no light mode on purpose. Fonts: Fraunces (headings, real italics loaded) + Inter.
 - Media folders: `2D_Animation/`, `3D/`, `Motion_Graphics/`, `Character_Design/`, `Storyboards/`. `images/IMG_2905.jpeg` is the About portrait.
 - `originals/`: full-size originals, **gitignored** (never goes to GitHub).
